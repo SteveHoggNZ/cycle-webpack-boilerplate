@@ -28,16 +28,34 @@ module.exports = function (config) {
         fs: 'empty'
       },
       module: {
-        loaders: [
+        //preLoaders: [
+        //  // transpile all files except testing sources with babel as usual
+        //  {
+        //    test: /\.js$/,
+        //    exclude: [
+        //      //path.resolve('src/components/'),
+        //      path.resolve('node_modules/')
+        //    ],
+        //    //include: path.resolve(__dirname, './src'),
+        //    loader: 'babel'
+        //  },
+        //  // transpile and instrument only testing sources with isparta
+        //  {
+        //    test: /\.js$/,
+        //    //include: path.resolve(__dirname, './src'),
+        //    exclude: /(node_modules|bower_components)\//,
+        //    loader: 'isparta-instrumenter-loader'
+        //  }
+        //],
+        preLoaders: [
           {
             test: /\.js$/,
             loader: 'babel-loader',
-            //include: path.resolve(__dirname, './src')
+            include: path.resolve(__dirname, './src')
           }
         ],
-        postLoaders: [{
+        loaders: [{
           test: /\.js$/,
-          //exclude: /(test|node_modules)\//,
           include: path.resolve(__dirname, './src'),
           loader: 'istanbul-instrumenter'
         }]
@@ -51,16 +69,18 @@ module.exports = function (config) {
     reporters: ['dots', 'coverage'],
 
     coverageReporter: {
-      type: 'text',
-      dir: 'coverage/'
+      reporters: [
+        {type: 'text'},
+        {type: 'lcov', dir: path.join(__dirname, 'coverage'), subdir: '.'}
+      ]
     },
 
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
-    //browsers: ['PhantomJS'],
+    //browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
     singleRun: false
   })
 };
