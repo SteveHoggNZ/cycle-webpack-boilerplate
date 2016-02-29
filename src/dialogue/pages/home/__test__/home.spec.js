@@ -48,7 +48,7 @@ import createRenderTarget from '../../../../__test__/helper/createRenderTarget'
 test('HOME TESTS #', function (t) {
 
   t.test('click event', function (q) {
-    q.plan(2);
+    q.plan(1);
 
 
     const props$ = Rx.Observable.just(4).delay(50);
