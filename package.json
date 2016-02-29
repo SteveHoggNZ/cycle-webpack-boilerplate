@@ -7,7 +7,8 @@
     "start": "node server.js",
     "build": "webpack --progress --colors --config webpack.production.config.js",
     "clean": "rm -rf build/",
-    "test": "testem"
+    "test": "testem",
+    "test2": "NODE_ENV=production karma start ./karma.config.js --single-run"
   },
   "repository": {
     "type": "git",
@@ -49,9 +50,17 @@
     "babel-loader": "^5.3.2",
     "glob": "^5.0.3",
     "install": "^0.1.8",
+    "istanbul-instrumenter-loader": "^0.2.0",
+    "karma": "^0.13.21",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-coverage": "^0.5.3",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-tap": "^1.0.3",
+    "karma-webpack": "^1.7.0",
     "node-libs-browser": "^0.5.2",
     "path": "^0.11.14",
-    "tape": "^4.0.1",
+    "phantomjs-prebuilt": "^2.1.4",
+    "tape": "^4.4.0",
     "testem": "^0.7.5",
     "webpack": "^1.10.1",
     "webpack-dev-server": "^1.7.0"
