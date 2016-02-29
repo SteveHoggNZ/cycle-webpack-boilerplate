@@ -8,7 +8,8 @@
     "build": "webpack --progress --colors --config webpack.production.config.js",
     "clean": "rm -rf build/",
     "test": "testem",
-    "test2": "NODE_ENV=production karma start ./karma.config.js --single-run"
+    "test2": "NODE_ENV=production karma start ./karma.config.js",
+    "test2:ci": "NODE_ENV=production karma start ./karma.config.js --single-run"
   },
   "repository": {
     "type": "git",

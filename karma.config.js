@@ -9,7 +9,8 @@ module.exports = function (config) {
       require('karma-webpack'),
       require('karma-tap'),
       require('karma-chrome-launcher'),
-      require('karma-phantomjs-launcher')
+      require('karma-phantomjs-launcher'),
+      require('karma-coverage')
     ],
 
     basePath: '',
@@ -29,11 +30,17 @@ module.exports = function (config) {
       module: {
         loaders: [
           {
-            test: /\.js?$/,
+            test: /\.js$/,
             loader: 'babel-loader',
             //include: path.resolve(__dirname, './src')
           }
-        ]
+        ],
+        postLoaders: [{
+          test: /\.js$/,
+          //exclude: /(test|node_modules)\//,
+          include: path.resolve(__dirname, './src'),
+          loader: 'istanbul-instrumenter'
+        }]
       }
     },
 
@@ -41,12 +48,19 @@ module.exports = function (config) {
       noInfo: true
     },
 
-    reporters: ['dots'],
+    reporters: ['dots', 'coverage'],
+
+    coverageReporter: {
+      type: 'text',
+      dir: 'coverage/'
+    },
+
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
+    //browsers: ['PhantomJS'],
     singleRun: false
   })
 };
